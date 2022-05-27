@@ -1,0 +1,253 @@
+$color-bg: #FFCB00;
+$color-font: #333;
+$color-dark: #000;
+$color-red: #F00;
+$border: #CCC;
+$font: Raleway, Arial, Verdana;
+$size: 16px;
+$size-n: 1.2em;
+$size-h: 1.8em;
+$paddig: 10px;
+
+@mixin padding {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@mixin border($border, $margin) {
+    border: 1px solid $border;
+    margin: $margin; 
+}
+
+@mixin link($cor) {
+    text-decoration: none;
+    font-weight: 600;
+    color: $cor;
+}
+
+@mixin sombra($cor) {
+    box-shadow: 0 0 20px $cor;
+}
+
+@mixin btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 1s;
+    @include sombra(#ccc);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: $size $font;
+    color: $color-font;
+    padding-top: 100px;
+}
+
+.header {
+    width: 100%;
+    background-color: $color-bg;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    @include padding;
+    @include sombra($color-font);
+    &-nav {
+        float: right;
+        ul {
+            list-style: none;
+            li {
+                display: inline-block;
+                margin: 30px;
+                a {
+                    @include link($color-font);
+                    &:hover {
+                        color: $color-red;
+                    }
+                }
+            }
+        }
+    }  
+    &-menu {
+        @include sombra(#333);
+        border: 1px solid #333;
+        padding: 10px 20px;
+        float: right;
+        margin-top: 15px;
+        display: none;
+    } 
+}
+
+.banner {
+    width: 100%;
+    img {
+        width: 100%;
+    }
+}
+
+.footer {
+    width: 100%;
+    display: inline-block;
+    background: $color-bg;
+    @include padding();
+    p {
+        text-align: center;
+        a {
+            @include link($color-bg);
+            margin: 10px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: $color-font;
+            border-radius: 100%;
+            line-height: 30px;
+            transition: all 1s;
+            &:hover {
+                background-color: $color-red;
+            }
+        }
+    }
+}
+
+.container {
+    width: 1000px;
+    margin: 30px auto;
+    h1 {
+        font-size: $size-h;
+        text-align: center;
+        margin-bottom:  50px;
+    }
+    h2 {
+        font-size: $size-n;
+        margin: 15px;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,33.33%);
+    & &-coluna {
+        @include padding();
+        @include sombra(#999);
+        margin: 5px;
+        text-align: center;
+        margin-bottom: 30px;
+        border-radius: 5px;
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+    & &-btn {
+        background: $color-bg;
+        color: $color-font;
+        @include btn;
+        &:hover {
+            background-color: $color-dark;
+            color: $color-bg;
+        }
+    }
+    p {
+        margin: 15px;
+    }
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    img {
+        width: 100%;
+    }
+    &-coluna {
+        @include padding();
+    }
+}
+
+p {
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.img {
+    background-color: #f1f1f1;
+    @include padding();
+    @include sombra(#666);
+    display: block;
+    filter: grayscale(100);
+    transition: all 1s;
+    &:hover {
+        filter: grayscale(0);
+    }
+}
+
+.valor {
+    text-align: center;
+    color: #F00;
+    font-size: 2em;
+}
+
+.center {
+    text-align: center;
+}
+
+.grid-dados {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    & &-coluna.center {
+        text-align: center;
+        border:  1px solid #ccc;
+        margin: 5px;
+        padding: 20px 0 0 0;
+    }
+}
+
+.btn {
+    @include btn;
+    &-danger {
+        color:  #FFF;
+        background: #F00;
+    }
+}
+
+
+@media (max-width: 420px) {
+    body {
+        padding-top: 80px;
+    }
+    .header {
+        display: inline-block;
+        z-index: 999;
+    }
+    .header {
+        &-nav, &-nav ul, &-nav ul li {
+            width: 100%;
+        }
+        img {
+            width: 300px;
+        }
+        &-menu {
+            display: block;
+        }
+    }
+    .img {
+        z-index: 9;
+    }
+    .header {
+        &-nav {
+            display: none;
+        }
+    }
+    .container {
+        width: 100%;
+    }
+    .grid, .grid-2 {
+        grid-template-columns: 100%;
+    }
+    .show {
+        display: block;
+    }
+}
